@@ -13,6 +13,7 @@ public class gamemanager : MonoBehaviour
     public Text texthighscore;
     private int currentsequencestep;
     private const string Highscorekey = "Highscore";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +49,13 @@ public class gamemanager : MonoBehaviour
         }
     }
 
+    void PressButton(int bindex)
+    {
+        Button button = buttons[bindex];
+        ColorBlock colorblock = button.colors;
+        colorblock.disabledColor = colorblock.pressedColor;
+        button.colors = colorblock;
+    }
     // Update is called once per frame
     void Update()
     {
