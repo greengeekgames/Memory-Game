@@ -174,7 +174,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.9433962, g: 0.084549636, b: 0.24737425, a: 1}
     m_HighlightedColor: {r: 0.4811321, g: 0, b: 0, a: 1}
     m_PressedColor: {r: 0.8301887, g: 0, b: 0, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.6981132, g: 0.6618903, b: 0.6618903, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -292,7 +292,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 0.9598178, b: 0.033018887, a: 1}
     m_HighlightedColor: {r: 0.9150943, g: 0.72643405, b: 0, a: 1}
     m_PressedColor: {r: 0.745283, g: 0.5627972, b: 0.024608415, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.8301887, g: 0.7871129, b: 0.7871129, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -639,7 +639,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.002500534, g: 0, b: 1, a: 1}
     m_HighlightedColor: {r: 0, g: 0.10202921, b: 0.5660378, a: 1}
     m_PressedColor: {r: 0.05322181, g: 0.8679245, b: 0.7832354, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.6415094, g: 0.6021716, b: 0.6021716, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -836,7 +836,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.59340906, g: 1, b: 0, a: 1}
     m_HighlightedColor: {r: 0.08420034, g: 0.5754717, b: 0, a: 1}
     m_PressedColor: {r: 0.17938554, g: 1, b: 0, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.764151, g: 0.764151, b: 0.71729267, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1119,7 +1119,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f47bc9260ee4ab74a849aac719ed391e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons: []
+  buttons:
+  - {fileID: 1437345204}
+  - {fileID: 109544289}
+  - {fileID: 1183804441}
+  - {fileID: 478596850}
   startduration: 0.3
   currentduration: 0
   sequence: 

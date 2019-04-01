@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class gamemanager : MonoBehaviour
 {
-    public Button[] buttons;
+    [SerializeField] public Button [] buttons;
     public float startduration = 0.3f;
     public float currentduration;
     public List<int> sequence;
@@ -32,7 +32,7 @@ public class gamemanager : MonoBehaviour
     void NextSequence()
     {
         textscore.text = sequence.Count.ToString();
-        sequence.Add(Random.Range(0, buttons.Length));
+        sequence.Add(Random.Range(0, buttons.Length-1));
         StartCoroutine(PlaySequence());
         Debug.Log("NextSequence End");
     }
@@ -40,11 +40,17 @@ public class gamemanager : MonoBehaviour
     IEnumerator PlaySequence()
     {
         currentsequencestep = 0;
+        ResetButtons();
+        DisableButtons(true);
+
         while(currentsequencestep<sequence.Count)
         {
             int buttonindex = sequence[currentsequencestep];
             Debug.Log("Press button: " + buttonindex);
+            PressButton(buttonindex);
             currentsequencestep++;
+            yield return new WaitForSeconds(currentduration);
+            ResetButtons();
             yield return new WaitForSeconds(currentduration);
         }
     }
@@ -55,6 +61,25 @@ public class gamemanager : MonoBehaviour
         ColorBlock colorblock = button.colors;
         colorblock.disabledColor = colorblock.pressedColor;
         button.colors = colorblock;
+    }
+
+    void ResetButtons()
+    {
+        for(int i=0;i<buttons.Length;i++)
+        {
+            Button button = buttons[i];
+            ColorBlock colorblock = button.colors;
+            colorblock.disabledColor = colorblock.normalColor;
+            button.colors = colorblock;
+        }
+    }
+
+    void DisableButtons(bool Bdisable)
+    {
+        for (int i=0; i < buttons.Length;i++)
+        {
+            buttons[i].interactable = !Bdisable;
+        }
     }
     // Update is called once per frame
     void Update()
