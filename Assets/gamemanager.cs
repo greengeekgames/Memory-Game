@@ -25,10 +25,36 @@ public class gamemanager : MonoBehaviour
         Debug.Log("start game!");
         textscore.text = "0";
         sequence.Clear();
+        NextSequence();
     }
+
+    void NextSequence()
+    {
+        textscore.text = sequence.Count.ToString();
+        sequence.Add(Random.Range(0, buttons.Length));
+        StartCoroutine(PlaySequence());
+        Debug.Log("NextSequence End");
+    }
+
+    IEnumerator PlaySequence()
+    {
+        currentsequencestep = 0;
+        while(currentsequencestep<sequence.Count)
+        {
+            int buttonindex = sequence[currentsequencestep];
+            Debug.Log("Press button: " + buttonindex);
+            currentsequencestep++;
+            yield return new WaitForSeconds(currentduration);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.N))
+        {
+            NextSequence();
+        }
 
 
     }
