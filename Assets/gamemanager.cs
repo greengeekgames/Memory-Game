@@ -45,11 +45,13 @@ public class gamemanager : MonoBehaviour
         Debug.Log("start game!");
         textscore.text = "0";
         sequence.Clear();
+        
         NextSequence();
     }
 
     void NextSequence()
     {
+       // currentduration = currentduration * 0.95f;
         textscore.text = sequence.Count.ToString();
         sequence.Add(Random.Range(0, buttons.Length-1));
         StartCoroutine(PlaySequence());
@@ -83,7 +85,7 @@ public class gamemanager : MonoBehaviour
         if(buttonpressed!=buttons[sequence[currentsequencestep]])
         {
             Debug.Log("Failed");
-            audioData = GetComponent<AudioSource>();
+            audioData = buttonpressed.GetComponent<AudioSource>();
             audioData.Play(0);
             Start();
         }
@@ -104,7 +106,7 @@ public class gamemanager : MonoBehaviour
         ColorBlock colorblock = button.colors;
         colorblock.disabledColor = colorblock.pressedColor;
         button.colors = colorblock;
-        audioData = GetComponent<AudioSource>();
+        audioData = button.GetComponent<AudioSource>();
         audioData.Play();
     }
 
