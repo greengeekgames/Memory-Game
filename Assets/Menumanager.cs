@@ -11,8 +11,8 @@ public class Menumanager : MonoBehaviour
     {
         settingsOpen = !settingsOpen;
         if (settingsOpen)
-            settingsAnimator.Play("OpenSettings");
+            settingsAnimator.Play("Opensettings");
         else
-            settingsAnimator.Play("CloseSettings");
+            settingsAnimator.Play("Closesettings");
     }
 }

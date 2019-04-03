@@ -19,7 +19,7 @@ public class gamemanager : MonoBehaviour
     void Start()
     {
         textscore.text = "start";
-        currentduration = startduration;
+      //  currentduration = startduration;
     }
 
     public int highscore
@@ -45,13 +45,13 @@ public class gamemanager : MonoBehaviour
         Debug.Log("start game!");
         textscore.text = "0";
         sequence.Clear();
-        
+        currentduration = startduration-(Settingmanager.Instance.difficulty*startduration/5.0f);
         NextSequence();
     }
 
     void NextSequence()
     {
-       // currentduration = currentduration * 0.95f;
+       currentduration = currentduration * 0.99f;
         textscore.text = sequence.Count.ToString();
         sequence.Add(Random.Range(0, buttons.Length-1));
         StartCoroutine(PlaySequence());
