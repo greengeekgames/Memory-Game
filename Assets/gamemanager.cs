@@ -13,12 +13,31 @@ public class gamemanager : MonoBehaviour
     public Text texthighscore;
     private int currentsequencestep;
     private const string Highscorekey = "Highscore";
+    AudioSource audioData;
 
     // Start is called before the first frame update
     void Start()
     {
         textscore.text = "start";
         currentduration = startduration;
+    }
+
+    public int highscore
+    {
+        get{
+            return PlayerPrefs.GetInt(Highscorekey);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(Highscorekey, value);
+            displayhighscore();
+        }
+
+    }
+
+    void displayhighscore()
+    {
+        texthighscore.text = "High Score: " + highscore.ToString();
     }
 
     public void StartGame()
@@ -39,11 +58,12 @@ public class gamemanager : MonoBehaviour
 
     IEnumerator PlaySequence()
     {
+        yield return new WaitForSeconds(1f);
         currentsequencestep = 0;
         ResetButtons();
         DisableButtons(true);
 
-        while(currentsequencestep<sequence.Count)
+        while (currentsequencestep < sequence.Count)
         {
             int buttonindex = sequence[currentsequencestep];
             Debug.Log("Press button: " + buttonindex);
@@ -53,6 +73,29 @@ public class gamemanager : MonoBehaviour
             ResetButtons();
             yield return new WaitForSeconds(currentduration);
         }
+        currentsequencestep = 0;
+        DisableButtons(false);
+    }
+
+    public void PressedByUser(Button buttonpressed)
+    {
+        if (currentsequencestep >= sequence.Count) return;
+        if(buttonpressed!=buttons[sequence[currentsequencestep]])
+        {
+            Debug.Log("Failed");
+            audioData = GetComponent<AudioSource>();
+            audioData.Play(0);
+            Start();
+        }
+        else
+        {
+            currentsequencestep++;
+            if(currentsequencestep>=sequence.Count)
+            {
+                if (currentsequencestep > highscore) highscore = sequence.Count;
+                NextSequence();
+            }
+        }
     }
 
     void PressButton(int bindex)
@@ -61,6 +104,8 @@ public class gamemanager : MonoBehaviour
         ColorBlock colorblock = button.colors;
         colorblock.disabledColor = colorblock.pressedColor;
         button.colors = colorblock;
+        audioData = GetComponent<AudioSource>();
+        audioData.Play();
     }
 
     void ResetButtons()
@@ -88,7 +133,7 @@ public class gamemanager : MonoBehaviour
         {
             NextSequence();
         }
-
-
     }
+
+
 }
